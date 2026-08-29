@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MindMetrics - Understanding Mental Health Through Data</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#d6dbd9",
+                        "surface-container-low": "#f0f5f2",
+                        "on-tertiary-container": "#fffbff",
+                        "secondary": "#515f74",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#d5e3fc",
+                        "text-slate-muted": "#64748B",
+                        "on-surface": "#171d1c",
+                        "primary": "#00685f",
+                        "on-primary": "#ffffff",
+                        "border-outline-variant": "#E2E8F0",
+                        "on-primary-fixed-variant": "#005049",
+                        "on-background": "#171d1c",
+                        "on-secondary-container": "#57657a",
+                        "background": "#f5faf8",
+                        "inverse-on-surface": "#edf2f0",
+                        "secondary-fixed": "#d5e3fc",
+                        "tertiary-fixed-dim": "#ffb59a",
+                        "on-tertiary-fixed": "#370e00",
+                        "surface-container-high": "#e4e9e7",
+                        "tertiary": "#924628",
+                        "primary-fixed": "#89f5e7",
+                        "on-error": "#ffffff",
+                        "primary-container": "#008378",
+                        "surface-container-highest": "#dee4e1",
+                        "secondary-fixed-dim": "#b9c7df",
+                        "outline-variant": "#bcc9c6",
+                        "primary-fixed-dim": "#6bd8cb",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "surface-container": "#eaefed",
+                        "on-surface-variant": "#3d4947",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ffdbce",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#f5faf8",
+                        "on-primary-fixed": "#00201d",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "on-primary-container": "#f4fffc",
+                        "text-charcoal": "#1E293B",
+                        "surface-variant": "#dee4e1",
+                        "inverse-primary": "#6bd8cb",
+                        "surface-tint": "#006a61",
+                        "on-tertiary-fixed-variant": "#773215",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#b05e3d",
+                        "outline": "#6d7a77",
+                        "surface": "#f5faf8",
+                        "inverse-surface": "#2c3130"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "40px",
+                        "panel-gap": "32px",
+                        "unit": "8px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "data-point-lg": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "data-point-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-md": ["14px", { "lineHeight": "1.2", "fontWeight": "500" }],
+                        "data-point-lg": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "data-point-sm": ["14px", { "lineHeight": "1.2", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface-container-lowest border-b border-outline-variant">
+<div class="flex items-center gap-gutter">
+<span class="font-headline-md text-headline-md font-bold text-primary">MindMetrics</span>
+<div class="hidden md:flex gap-unit">
+<a class="text-on-surface-variant px-3 py-2 font-label-md text-label-md hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-on-surface-variant px-3 py-2 font-label-md text-label-md hover:text-primary transition-colors" href="#">Workflow</a>
+<a class="text-on-surface-variant px-3 py-2 font-label-md text-label-md hover:text-primary transition-colors" href="#">Insights</a>
+<a class="text-on-surface-variant px-3 py-2 font-label-md text-label-md hover:text-primary transition-colors" href="#">Data</a>
+</div>
+</div>
+<div class="flex items-center gap-unit">
+<div class="relative hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-size: 20px;">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-lowest border border-border-outline-variant rounded-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none text-label-md font-label-md text-on-surface placeholder:text-text-slate-muted w-64" placeholder="Search..." type="text"/>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-sm hover:opacity-90 transition-opacity whitespace-nowrap">Explore Data</button>
+<div class="w-8 h-8 rounded-full bg-surface-dim overflow-hidden border border-border-outline-variant ml-2 flex items-center justify-center cursor-pointer">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A clean, professional headshot of a medical data analyst against a pure white background. The subject is wearing business casual attire, slightly out of focus to emulate a generic user profile picture in a sleek, minimalist healthcare software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM8KK446dOrQWK6gH9R3hYmidixNNKunohPbxwSwDjmTbszpWB_cTXpQTWweuKBUGikjU81bgZRIcen_5KAmhEBM-0IwEgmPYPLeLowEpq2Ib7HfM4wYvt4VQxSzhc7KuGbSxXkRJjgMqkd8Z_w4cv1RrvYUczB8Yw91MgVq8UKYhM5LxNHNtFY6VJGJO4tz7B0E8hcsfYFn_6huGIUHnz1bsYl9vDLm_--turNpjUtkFTyj2MU0jRPQ"/>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-16 flex flex-col items-center">
+<!-- Hero Section -->
+<section class="w-full max-w-[1280px] px-margin-mobile md:px-margin-desktop py-panel-gap flex flex-col lg:flex-row items-center gap-gutter lg:min-h-[70vh] border-b border-border-outline-variant">
+<div class="w-full lg:w-5/12 flex flex-col gap-6">
+<div class="inline-flex items-center gap-2 text-text-slate-muted font-label-md text-label-md border border-border-outline-variant px-3 py-1 rounded-sm w-max bg-surface-container-lowest">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Canada • 10,000+ records • Multi-year analysis</span>
+</div>
+<h1 class="font-display-lg text-display-lg text-on-surface">Understanding Mental Health Through Data</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-xl">
+                    Explore evidence-based trends in mental health and wellbeing across demographics, regions, and contributing factors. A clinical-grade tool for researchers and analysts.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="bg-primary text-on-primary font-label-md text-label-md px-6 py-3 rounded-sm hover:opacity-90 transition-opacity flex justify-center items-center gap-2">
+<span>Explore Dashboard</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<button class="bg-surface-container-lowest text-primary border border-primary font-label-md text-label-md px-6 py-3 rounded-sm hover:bg-surface-dim transition-colors flex justify-center items-center">
+                        View Methodology
+                    </button>
+</div>
+</div>
+<div class="w-full lg:w-7/12 mt-8 lg:mt-0 relative flex justify-end">
+<div class="w-full max-w-[800px] aspect-[4/3] bg-surface-container-lowest border border-border-outline-variant rounded-sm shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col relative">
+<!-- Faux UI Header -->
+<div class="h-10 bg-surface-dim border-b border-border-outline-variant flex items-center px-4 gap-4">
+<div class="flex gap-2">
+<div class="w-2.5 h-2.5 rounded-full bg-border-outline-variant"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-border-outline-variant"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-border-outline-variant"></div>
+</div>
+<div class="flex-grow flex gap-2">
+<div class="h-4 bg-surface-container-lowest w-24 rounded-sm border border-border-outline-variant"></div>
+<div class="h-4 bg-surface-container-lowest w-32 rounded-sm border border-border-outline-variant"></div>
+</div>
+</div>
+<!-- Image -->
+<img alt="Analytics Dashboard Preview" class="w-full h-full object-cover" data-alt="A highly detailed, ultra-crisp visualization of a complex medical data dashboard. The image should feature intersecting line graphs in a deep teal color on a stark white background with subtle pale gray gridlines. The aesthetic is strictly clinical, minimalist, and flat, avoiding any playful colors or deep shadows. The overall feel is one of rigorous statistical analysis." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4pbOWaz5Uv0lIa9glKSLXcrU9mjokIdXKVK6D4FasmB9k1_dLsiAJ5vvPweof6s4DqYfIxcMrbEr9oN_k6u7wBXAh0KfD_2EmfyXgeOxxmfCDHtHaNdrZG6EwxurIyqoyG8_zAcfQAbknQrNEF691wzgPgNRgQcNCk3HdKdL4NF5SSNzXdbEDY9IWm5LqH_PCPOJTbr1Evy2UGXlSlRriM8sdN29vhOnU7oDjtWSU_6YmHV64fWEoCQ"/>
+<!-- Overlay floating metric -->
+<div class="absolute bottom-6 right-6 bg-surface-container-lowest border border-border-outline-variant p-4 rounded-sm shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] flex flex-col">
+<span class="font-label-md text-label-md text-text-slate-muted uppercase tracking-wider mb-1">Confidence Interval</span>
+<span class="font-data-point-lg text-data-point-lg text-primary">95.4%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: Narrative -->
+<section class="w-full max-w-[1280px] px-margin-mobile md:px-margin-desktop py-panel-gap flex flex-col gap-gutter border-b border-border-outline-variant">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter lg:gap-panel-gap">
+<!-- Problem -->
+<div class="flex flex-col gap-4 p-8 bg-surface-container-lowest border border-border-outline-variant rounded-sm relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-error opacity-70"></div>
+<div class="w-12 h-12 bg-error-container text-on-error-container rounded-sm flex items-center justify-center mb-2">
+<span class="material-symbols-outlined" style="font-size: 24px;">troubleshoot</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">The Problem</h3>
+<p class="font-body-md text-body-md text-secondary">
+                         Mental health indicators are often fragmented across disparate clinical sources, making large-scale demographic trend analysis difficult. Without cohesive data structuring, identifying regional disparities and localized risk factors relies on delayed reporting rather than real-time structural insight.
+                     </p>
+</div>
+<!-- Opportunity -->
+<div class="flex flex-col gap-4 p-8 bg-surface-container-lowest border border-border-outline-variant rounded-sm relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary opacity-70"></div>
+<div class="w-12 h-12 bg-surface-dim text-primary rounded-sm flex items-center justify-center mb-2">
+<span class="material-symbols-outlined" style="font-size: 24px;">query_stats</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface">The Opportunity</h3>
+<p class="font-body-md text-body-md text-secondary">
+                         By centralizing standardized clinical datasets into a flat, accessible architecture, we can surface hidden correlations immediately. This structural clarity allows policy makers and healthcare providers to preemptively address vulnerabilities based on robust, statistically significant predictive modeling.
+                     </p>
+</div>
+</div>
+</section>
+<!-- Section 3: Impact Metrics -->
+<section class="w-full max-w-[1280px] px-margin-mobile md:px-margin-desktop py-panel-gap flex flex-col gap-gutter">
+<div class="flex flex-col mb-4">
+<h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Project Impact</h2>
+<p class="font-body-md text-body-md text-secondary max-w-2xl">Quantitative overview of the dataset architecture and analytical scope.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Metric 1 -->
+<div class="bg-surface-container-lowest border border-border-outline-variant p-6 rounded-sm flex flex-col justify-between min-h-[160px]">
+<span class="font-label-md text-label-md text-text-slate-muted uppercase tracking-wide">Dataset Volume</span>
+<div>
+<div class="font-data-point-lg text-display-lg text-primary mb-1">10K+</div>
+<div class="font-body-md text-body-md text-on-surface">Verified Clinical Records</div>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container-lowest border border-border-outline-variant p-6 rounded-sm flex flex-col justify-between min-h-[160px]">
+<span class="font-label-md text-label-md text-text-slate-muted uppercase tracking-wide">Tracking Breadth</span>
+<div>
+<div class="font-data-point-lg text-display-lg text-primary mb-1">15+</div>
+<div class="font-body-md text-body-md text-on-surface">Standardized KPIs</div>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container-lowest border border-border-outline-variant p-6 rounded-sm flex flex-col justify-between min-h-[160px]">
+<span class="font-label-md text-label-md text-text-slate-muted uppercase tracking-wide">Geographic Scope</span>
+<div>
+<div class="font-data-point-lg text-display-lg text-primary mb-1">Multi</div>
+<div class="font-body-md text-body-md text-on-surface">Region Cross-Analysis</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full flex flex-col md:flex-row justify-between items-center px-margin-desktop py-gutter gap-panel-gap bg-surface-container border-t border-outline-variant mt-auto">
+<div class="font-headline-md text-headline-md text-primary">MindMetrics</div>
+<div class="flex flex-wrap gap-4 justify-center">
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded-sm px-1" href="#">Methodology</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded-sm px-1" href="#">Data Sources</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded-sm px-1" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary rounded-sm px-1" href="#">Terms of Service</a>
+</div>
+<div class="font-body-md text-body-md text-on-surface-variant">
+            © 2024 MindMetrics Analytics. All rights reserved.
+        </div>
+</footer>
+</body></html>

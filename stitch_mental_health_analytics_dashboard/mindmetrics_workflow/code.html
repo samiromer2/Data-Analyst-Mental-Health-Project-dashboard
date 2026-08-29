@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MindMetrics - Workflow Pipeline</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-dim": "#d6dbd9",
+                    "surface-container-low": "#f0f5f2",
+                    "on-tertiary-container": "#fffbff",
+                    "secondary": "#515f74",
+                    "error": "#ba1a1a",
+                    "secondary-container": "#d5e3fc",
+                    "text-slate-muted": "#64748B",
+                    "on-surface": "#171d1c",
+                    "primary": "#00685f",
+                    "on-primary": "#ffffff",
+                    "border-outline-variant": "#E2E8F0",
+                    "on-primary-fixed-variant": "#005049",
+                    "on-background": "#171d1c",
+                    "on-secondary-container": "#57657a",
+                    "background": "#f5faf8",
+                    "inverse-on-surface": "#edf2f0",
+                    "secondary-fixed": "#d5e3fc",
+                    "tertiary-fixed-dim": "#ffb59a",
+                    "on-tertiary-fixed": "#370e00",
+                    "surface-container-high": "#e4e9e7",
+                    "tertiary": "#924628",
+                    "primary-fixed": "#89f5e7",
+                    "on-error": "#ffffff",
+                    "primary-container": "#008378",
+                    "surface-container-highest": "#dee4e1",
+                    "secondary-fixed-dim": "#b9c7df",
+                    "outline-variant": "#bcc9c6",
+                    "primary-fixed-dim": "#6bd8cb",
+                    "on-secondary-fixed": "#0d1c2e",
+                    "surface-container": "#eaefed",
+                    "on-surface-variant": "#3d4947",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#ffdbce",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#f5faf8",
+                    "on-primary-fixed": "#00201d",
+                    "on-error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#3a485b",
+                    "on-primary-container": "#f4fffc",
+                    "text-charcoal": "#1E293B",
+                    "surface-variant": "#dee4e1",
+                    "inverse-primary": "#6bd8cb",
+                    "surface-tint": "#006a61",
+                    "on-tertiary-fixed-variant": "#773215",
+                    "error-container": "#ffdad6",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-container": "#b05e3d",
+                    "outline": "#6d7a77",
+                    "surface": "#f5faf8",
+                    "inverse-surface": "#2c3130"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-desktop": "40px",
+                    "panel-gap": "32px",
+                    "unit": "8px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "data-point-lg": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "data-point-sm": ["JetBrains Mono"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "1.2", "fontWeight": "500"}],
+                    "data-point-lg": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-md": ["20px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "data-point-sm": ["14px", {"lineHeight": "1.2", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .pipeline-connector {
+            position: absolute;
+            left: 24px;
+            top: 48px;
+            bottom: -24px;
+            width: 2px;
+            background-color: theme('colors.outline-variant');
+            z-index: 0;
+        }
+        .pipeline-node:last-child .pipeline-connector {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col pt-16">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-none">
+<div class="flex items-center gap-gutter">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary-fixed">MindMetrics</span>
+<div class="hidden md:flex gap-gutter ml-8">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Dashboard</a>
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed border-b-2 border-primary dark:border-primary-fixed pb-1 opacity-80 duration-150" href="#">Workflow</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Insights</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Data</a>
+</div>
+</div>
+<div class="flex items-center gap-gutter">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-dim border border-outline-variant rounded-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all font-body-md text-body-md w-64" placeholder="Search..." type="text"/>
+</div>
+<button class="font-label-md text-label-md bg-primary text-on-primary px-4 py-2 rounded-DEFAULT hover:bg-primary-container transition-colors">Explore Data</button>
+<img alt="User profile" class="w-8 h-8 rounded-full object-cover border border-outline-variant" data-alt="A professional headshot of a data analyst in a bright, modern corporate setting. The lighting is soft and natural, conveying a clean, minimalist clinical aesthetic. The background is subtly blurred, maintaining a focus on high-performance SaaS environments." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwOxTKCWgCKvR54z73HEGQOFzTxQ5ycFJSO5qbw_FwMSDvr4BnPOIN_ynLrVMIVJ4jjLs7_8n6ptLX6kXwVtr6SGqcV-xEf7rDmCQHAUpXw4OYpnPaW5J13_Nsi5tgHF051ijXe7q2AD4McSR7rhJL21REgd87j98hb9waS4yz08PART4o5AnjYAHk0fVNlbUY_VSbe8O6TWiplRQypvZECxHfGcx2UeHrb3leSb0ZChLIC89aU4-aqw"/>
+</div>
+</nav>
+<div class="flex flex-1 relative">
+<!-- Main Content Canvas -->
+<main class="flex-1 px-margin-desktop py-panel-gap max-w-6xl mx-auto w-full">
+<header class="mb-panel-gap">
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-unit">Data Pipeline</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Standardized 10-step analytical workflow from ingestion to presentation.</p>
+</header>
+<div class="relative pl-8 md:pl-0">
+<!-- Pipeline Timeline Container -->
+<div class="space-y-gutter relative max-w-3xl mx-auto">
+<!-- Step 1 -->
+<div class="pipeline-node relative flex items-start gap-gutter group">
+<div class="pipeline-connector group-hover:bg-primary transition-colors duration-300"></div>
+<div class="relative z-10 w-12 h-12 rounded-full bg-surface-container-low border border-outline-variant flex items-center justify-center flex-shrink-0 group-hover:border-primary group-hover:text-primary transition-colors">
+<span class="font-data-point-sm text-data-point-sm text-on-surface-variant group-hover:text-primary">01</span>
+</div>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:border-primary transition-colors cursor-pointer group-hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)]">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Dataset Selection</h3>
+<span class="material-symbols-outlined text-outline" data-icon="database">database</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Identify and connect to relevant raw data sources.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="pipeline-node relative flex items-start gap-gutter group">
+<div class="pipeline-connector group-hover:bg-primary transition-colors duration-300"></div>
+<div class="relative z-10 w-12 h-12 rounded-full bg-surface-container-low border border-outline-variant flex items-center justify-center flex-shrink-0 group-hover:border-primary group-hover:text-primary transition-colors">
+<span class="font-data-point-sm text-data-point-sm text-on-surface-variant group-hover:text-primary">02</span>
+</div>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:border-primary transition-colors cursor-pointer group-hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)]">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Data Ingestion</h3>
+<span class="material-symbols-outlined text-outline" data-icon="download">download</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Extract data via APIs or batch processing.</p>
+</div>
+</div>
+<!-- Step 3 (Highlighted - Data Cleaning) -->
+<div class="pipeline-node relative flex items-start gap-gutter group">
+<div class="pipeline-connector bg-primary"></div>
+<div class="relative z-10 w-12 h-12 rounded-full bg-primary border-2 border-primary flex items-center justify-center flex-shrink-0 text-on-primary">
+<span class="font-data-point-sm text-data-point-sm font-bold text-on-primary">03</span>
+</div>
+<div class="flex-1 bg-surface-container-lowest border border-primary rounded-lg p-6 shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)] relative overflow-hidden">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Data Cleaning</h3>
+<span class="font-label-md text-label-md bg-surface-dim text-on-surface-variant px-2 py-1 rounded-sm uppercase tracking-wider text-xs">Active Node</span>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="mop">mop</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 pt-6 border-t border-outline-variant">
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Objective</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Prepare raw data for accurate analysis by resolving inconsistencies.</p>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-surface mb-2">Output</h4>
+<p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check_circle">check_circle</span>
+                                        Clean analytical dataset (v1.2_final)
+                                    </p>
+</div>
+</div>
+<div class="mt-6 bg-surface-dim rounded-lg p-4">
+<h4 class="font-label-md text-label-md text-on-surface mb-3">Key Activities</h4>
+<ul class="space-y-2">
+<li class="flex items-start gap-2 font-body-md text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-outline text-sm mt-1" data-icon="arrow_right">arrow_right</span>
+                                        Handle missing values (Imputation strategy applied)
+                                    </li>
+<li class="flex items-start gap-2 font-body-md text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-outline text-sm mt-1" data-icon="arrow_right">arrow_right</span>
+                                        Standardizing formats (Dates, Currencies)
+                                    </li>
+<li class="flex items-start gap-2 font-body-md text-body-md text-on-surface-variant">
+<span class="material-symbols-outlined text-outline text-sm mt-1" data-icon="arrow_right">arrow_right</span>
+                                        Remove duplicates &amp; outliers
+                                    </li>
+</ul>
+</div>
+<div class="mt-6 flex justify-end gap-3">
+<button class="font-label-md text-label-md px-4 py-2 border border-primary text-primary bg-surface-container-lowest rounded-DEFAULT hover:bg-surface-dim transition-colors">View Logs</button>
+<button class="font-label-md text-label-md px-4 py-2 bg-primary text-on-primary rounded-DEFAULT hover:bg-primary-container transition-colors">Execute Node</button>
+</div>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="pipeline-node relative flex items-start gap-gutter group opacity-60 hover:opacity-100 transition-opacity">
+<div class="pipeline-connector group-hover:bg-primary transition-colors duration-300"></div>
+<div class="relative z-10 w-12 h-12 rounded-full bg-surface-container-low border border-outline-variant flex items-center justify-center flex-shrink-0 group-hover:border-primary group-hover:text-primary transition-colors">
+<span class="font-data-point-sm text-data-point-sm text-on-surface-variant group-hover:text-primary">04</span>
+</div>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:border-primary transition-colors cursor-pointer group-hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)]">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Data Transformation</h3>
+<span class="material-symbols-outlined text-outline" data-icon="transform">transform</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Feature engineering and structuring.</p>
+</div>
+</div>
+<!-- Steps 5-10 collapsed for brevity, showing a few more representative nodes -->
+<!-- Step 5 -->
+<div class="pipeline-node relative flex items-start gap-gutter group opacity-60 hover:opacity-100 transition-opacity">
+<div class="pipeline-connector group-hover:bg-primary transition-colors duration-300"></div>
+<div class="relative z-10 w-12 h-12 rounded-full bg-surface-container-low border border-outline-variant flex items-center justify-center flex-shrink-0 group-hover:border-primary group-hover:text-primary transition-colors">
+<span class="font-data-point-sm text-data-point-sm text-on-surface-variant group-hover:text-primary">05</span>
+</div>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:border-primary transition-colors cursor-pointer group-hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)]">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Exploratory Analysis (EDA)</h3>
+<span class="material-symbols-outlined text-outline" data-icon="query_stats">query_stats</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Initial statistical summaries and pattern discovery.</p>
+</div>
+</div>
+<!-- Skip to end -->
+<div class="pipeline-node relative flex items-start gap-gutter group opacity-60 hover:opacity-100 transition-opacity">
+<div class="relative z-10 w-12 h-12 rounded-full bg-surface-container-low border border-outline-variant flex items-center justify-center flex-shrink-0 group-hover:border-primary group-hover:text-primary transition-colors">
+<span class="font-data-point-sm text-data-point-sm text-on-surface-variant group-hover:text-primary">10</span>
+</div>
+<div class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-lg p-6 hover:border-primary transition-colors cursor-pointer group-hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.05)]">
+<div class="flex justify-between items-center mb-2">
+<h3 class="font-headline-md text-headline-md text-on-surface">Presentation</h3>
+<span class="material-symbols-outlined text-outline" data-icon="dashboard">dashboard</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant">Publish interactive dashboards and final reports.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full flex flex-col md:flex-row justify-between items-center px-margin-desktop py-gutter gap-panel-gap bg-surface-container dark:bg-inverse-surface border-t border-outline-variant dark:border-outline mt-auto">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md text-primary">MindMetrics</span>
+<span class="font-body-md text-body-md text-on-surface-variant">© 2024 MindMetrics Analytics. All rights reserved.</span>
+</div>
+<div class="flex gap-gutter">
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Methodology</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Data Sources</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Terms of Service</a>
+</div>
+</footer>
+</body></html>
