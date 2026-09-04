@@ -89,7 +89,7 @@ export function rowsFromCsv(text: string, dataset: string): Observation[] {
 
     observations.push({
       dataset,
-      ref_date: pick(raw, ["ref_date", "fiscal_year"]),
+      ref_date: pick(raw, ["ref_date", "fiscal_year", "ref_date_raw", "start_year"]),
       geo: pick(raw, ["geo", "geography"]),
       age_group: pick(raw, ["age_group", "age"]),
       sex: pick(raw, ["sex", "gender", "group"]),
@@ -102,7 +102,7 @@ export function rowsFromCsv(text: string, dataset: string): Observation[] {
       ]),
       uom: pick(raw, ["uom"]),
       value,
-      status: pick(raw, ["status"]),
+      status: pick(raw, ["status", "quality_flag"]),
     });
   }
 
