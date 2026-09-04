@@ -1,6 +1,7 @@
 import { DataNotice } from "@/components/data-notice";
 import { datasetPresence } from "@/lib/store";
 import { DATASET_REGISTRY } from "@/lib/datasets";
+import { TREND_MODEL_INFO } from "@/lib/model-info";
 
 export const metadata = { title: "About the Data" };
 
@@ -60,6 +61,53 @@ export default async function AboutDataPage() {
             Upload missing files into <code>data/processed/</code>.
           </p>
         ) : null}
+      </section>
+
+      <section>
+        <h2 className="text-xl font-semibold text-charcoal">Trend Direction Model</h2>
+        <p className="mt-3 text-sm leading-6 text-on-variant">{TREND_MODEL_INFO.summary}</p>
+        <div className="mt-3 overflow-x-auto border border-outline">
+          <table className="w-full text-left text-sm">
+            <thead className="bg-surface-dim text-slate">
+              <tr>
+                <th className="px-3 py-2 font-medium">Model</th>
+                <th className="px-3 py-2 font-medium">Training data</th>
+                <th className="px-3 py-2 font-medium">Target</th>
+                <th className="px-3 py-2 font-medium">Test accuracy</th>
+                <th className="px-3 py-2 font-medium">Test macro-F1</th>
+                <th className="px-3 py-2 font-medium">F1 (Down / Up)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t border-outline">
+                <td className="px-3 py-2 font-data text-charcoal">{TREND_MODEL_INFO.algorithm}</td>
+                <td className="px-3 py-2 text-on-variant">{TREND_MODEL_INFO.trainingData}</td>
+                <td className="px-3 py-2 text-on-variant">{TREND_MODEL_INFO.target}</td>
+                <td className="px-3 py-2 font-data text-charcoal">
+                  {(TREND_MODEL_INFO.testAccuracy * 100).toFixed(1)}%
+                </td>
+                <td className="px-3 py-2 font-data text-charcoal">
+                  {TREND_MODEL_INFO.testMacroF1.toFixed(3)}
+                </td>
+                <td className="px-3 py-2 font-data text-charcoal">
+                  {TREND_MODEL_INFO.perClassF1.Down.toFixed(3)} / {TREND_MODEL_INFO.perClassF1.Up.toFixed(3)}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p className="mt-3 text-sm leading-6 text-on-variant">
+          <strong className="text-charcoal">Important limitation: </strong>
+          {TREND_MODEL_INFO.limitation}
+        </p>
+        <p className="mt-2 text-xs text-slate">
+          Predictions are precomputed by the training notebook and served as a static file — the
+          dashboard never trains or runs the model itself. Trained on{" "}
+          {TREND_MODEL_INFO.nTransitions.toLocaleString()} real cycle-to-cycle transitions built
+          from the tables above; about{" "}
+          {(TREND_MODEL_INFO.pctMovesWithinCiMargin * 100).toFixed(0)}% of observed transitions in
+          this data are smaller than their own confidence interval.
+        </p>
       </section>
 
       <section>

@@ -2,9 +2,11 @@ import { BreakdownChart, TrendChart } from "@/components/charts/analytics-charts
 import { DataNotice } from "@/components/data-notice";
 import { EmptyState } from "@/components/empty-state";
 import { MetricCard } from "@/components/metric-card";
+import { TrendSignalCard } from "@/components/trend-signal-card";
 import { parseFilters } from "@/lib/filters";
 import type { PageSearchParams } from "@/lib/params";
 import { getBreakdown, getInsights, getMetrics, getSeries } from "@/lib/query";
+import { getTrendSignal } from "@/lib/trend";
 
 export const metadata = { title: "Dashboard" };
 
@@ -14,11 +16,12 @@ export default async function OverviewPage({
   searchParams: PageSearchParams;
 }) {
   const filters = parseFilters(await searchParams);
-  const [metrics, series, regions, insights] = await Promise.all([
+  const [metrics, series, regions, insights, trendResult] = await Promise.all([
     getMetrics(filters),
     getSeries({ ...filters, dataset: "perceived_mh_annual" }),
     getBreakdown({ ...filters, dataset: "perceived_mh_annual", dimension: "geo" }),
     getInsights(filters),
+    getTrendSignal({ ...filters, dataset: "perceived_mh_annual" }),
   ]);
 
   return (
@@ -38,6 +41,9 @@ export default async function OverviewPage({
         {metrics.map((card) => (
           <MetricCard key={card.id} card={card} />
         ))}
+      </section>
+      <section>
+        <TrendSignalCard result={trendResult} title="Model trend, selected indicator" />
       </section>
       <section className="grid gap-6 lg:grid-cols-12">
         <div className="border border-outline bg-surface-lowest p-6 lg:col-span-8">

@@ -1,9 +1,13 @@
 import { TrendChart } from "@/components/charts/analytics-charts";
 import { DataNotice } from "@/components/data-notice";
 import { EmptyState } from "@/components/empty-state";
+import { TopTrendsTable } from "@/components/top-trends-table";
+import { TrendModelInfo } from "@/components/trend-model-info";
+import { TrendSignalCard } from "@/components/trend-signal-card";
 import { parseFilters } from "@/lib/filters";
 import type { PageSearchParams } from "@/lib/params";
 import { getSeries } from "@/lib/query";
+import { getTopTrends, getTrendSignal } from "@/lib/trend";
 
 export const metadata = { title: "Trends" };
 
@@ -13,7 +17,12 @@ export default async function TrendsPage({
   searchParams: PageSearchParams;
 }) {
   const filters = parseFilters(await searchParams);
-  const series = await getSeries({ ...filters, dataset: "perceived_mh_annual" });
+  const seriesFilters = { ...filters, dataset: "perceived_mh_annual" };
+  const [series, trendResult, topTrends] = await Promise.all([
+    getSeries(seriesFilters),
+    getTrendSignal(seriesFilters),
+    getTopTrends(10),
+  ]);
 
   return (
     <div className="flex flex-col gap-6">
@@ -38,6 +47,14 @@ export default async function TrendsPage({
           />
         )}
       </section>
+
+      <section className="flex flex-col gap-4">
+        <h2 className="text-lg font-semibold text-charcoal">Model trend signal</h2>
+        <TrendSignalCard result={trendResult} title="Expected trend direction" />
+        <TrendModelInfo />
+      </section>
+
+      <TopTrendsTable rows={topTrends} />
     </div>
   );
 }
