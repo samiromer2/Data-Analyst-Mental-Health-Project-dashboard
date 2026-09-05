@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BreakdownChart, TrendChart } from "@/components/charts/analytics-charts";
 import { DataNotice } from "@/components/data-notice";
 import { EmptyState } from "@/components/empty-state";
@@ -61,11 +62,19 @@ export default async function OverviewPage({
         </div>
         <div className="border border-outline bg-surface-dim p-6 lg:col-span-4">
           <h2 className="text-lg font-semibold text-charcoal">Key observations</h2>
-          <ul className="mt-4 space-y-3 text-sm leading-6 text-on-variant">
+          <ul className="mt-4 space-y-4 text-sm leading-6 text-on-variant">
             {insights.slice(0, 3).map((item) => (
-              <li key={item.id}>{item.available ? item.statement : item.statement}</li>
+              <li key={item.id}>
+                <p className="font-medium text-charcoal">{item.title}</p>
+                <p className="mt-1">{item.statement}</p>
+              </li>
             ))}
           </ul>
+          <p className="mt-4 text-sm">
+            <Link href="/insights" className="font-medium text-primary hover:underline">
+              Read what this means
+            </Link>
+          </p>
         </div>
       </section>
       <section className="border border-outline bg-surface-lowest p-6">

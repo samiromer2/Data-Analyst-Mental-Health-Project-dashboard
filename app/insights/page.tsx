@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import { BreakdownChart, TrendChart } from "@/components/charts/analytics-charts";
 import { DataNotice } from "@/components/data-notice";
+import { FilterBar } from "@/components/filter-bar";
 import { parseFilters } from "@/lib/filters";
 import type { PageSearchParams } from "@/lib/params";
 import { getInsights } from "@/lib/query";
@@ -25,14 +27,23 @@ export default async function InsightsPage({
       <header>
         <h1 className="text-3xl font-bold text-charcoal">Insights</h1>
         <p className="mt-2 text-on-variant">
-          So what? Each block states a finding, shows the evidence, and says
-          what it does not mean.
+          So what? Each block states a finding, shows the evidence, says what
+          it does not mean, and names one thing communities can do.
         </p>
       </header>
+      <Suspense fallback={null}>
+        <FilterBar />
+      </Suspense>
+      <p className="text-sm text-slate">
+        Province and sex change the story where the source table has that break.
+        National figures are used when a selection is missing. The five findings
+        stay on their source indicators.
+      </p>
       <DataNotice>
-        Language stays associational. These are population-level patterns for
-        prevention planning. If suicide-related content is distressing, call or
-        text 9-8-8 in Canada.
+        Language stays associational. These are population-level patterns, not
+        individual risk. CCHS excludes people living on First Nations reserves,
+        in institutions, and full-time military. If suicide-related content is
+        distressing, call or text 9-8-8 in Canada.
       </DataNotice>
       {insights.map((item) => (
         <article key={item.id} className="border border-outline bg-surface-lowest p-6">
@@ -46,7 +57,7 @@ export default async function InsightsPage({
                 <BreakdownChart
                   points={item.points}
                   title="Evidence"
-                  layout={item.id === "regional" ? "horizontal" : "vertical"}
+                  layout={item.id === "place" ? "horizontal" : "vertical"}
                 />
               )}
             </div>
@@ -54,8 +65,34 @@ export default async function InsightsPage({
           <div className="mt-6 border-t border-outline pt-4">
             <p className="text-sm font-medium text-primary">What this means</p>
             <p className="mt-2 text-sm leading-6 text-on-variant">{item.meaning}</p>
-            <p className="mt-2 text-sm leading-6 text-slate">{item.caveat}</p>
+            <p className="mt-4 text-sm font-medium text-primary">What communities can do</p>
+            <p className="mt-2 text-sm leading-6 text-on-variant">{item.action}</p>
+            <p className="mt-4 text-sm leading-6 text-slate">{item.caveat}</p>
+            <p className="mt-3 text-xs text-slate">{item.source}</p>
           </div>
+          {item.help ? (
+            <div className="mt-4 border border-outline bg-surface-dim px-4 py-3">
+              <p className="text-sm font-medium text-charcoal">
+                If this is you or someone you know
+              </p>
+              <p className="mt-2 text-sm leading-6 text-on-variant">{item.help}</p>
+              <p className="mt-2 text-sm leading-6">
+                <a
+                  href="https://www.988.ca"
+                  className="text-primary underline underline-offset-2"
+                >
+                  9-8-8 Suicide Crisis Helpline
+                </a>
+                {" · "}
+                <a
+                  href="https://cmha.ca/find-help/"
+                  className="text-primary underline underline-offset-2"
+                >
+                  Find local CMHA support
+                </a>
+              </p>
+            </div>
+          ) : null}
         </article>
       ))}
     </div>

@@ -58,6 +58,7 @@ export const SECTION_DATASET: Record<string, string> = {
   "/dashboard/geographic": "perceived_mh_annual",
   "/dashboard/demographics": "stress_coping",
   "/dashboard/risk": "suicidal_thoughts",
+  "/insights": "perceived_mh_annual",
 };
 
 export const SECTION_AGE: Record<string, boolean> = {
@@ -66,6 +67,7 @@ export const SECTION_AGE: Record<string, boolean> = {
   "/dashboard/geographic": false,
   "/dashboard/demographics": true,
   "/dashboard/risk": true,
+  "/insights": false,
 };
 
 export const HEADLINE_INDICATORS = {

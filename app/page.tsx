@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { getInsights } from "@/lib/query";
 
 const metrics = [
   { label: "Canadian source tables", value: "8", detail: "StatCan and CIHI Track A files" },
@@ -6,7 +7,9 @@ const metrics = [
   { label: "CCHS cycles in the core table", value: "3", detail: "2019/20 · 2021/22 · 2023/24" },
 ];
 
-export default function HomePage() {
+export default async function HomePage() {
+  const insights = await getInsights({});
+  const headline = insights.find((item) => item.id === "distress" && item.available) ?? insights[0];
   return (
     <div className="mx-auto flex w-full max-w-6xl flex-col">
       <section className="grid gap-10 border-b border-outline px-4 py-16 md:px-10 lg:grid-cols-12 lg:items-center">
@@ -50,6 +53,15 @@ export default function HomePage() {
             This site uses aggregated Canadian statistics. It does not predict
             individual risk and it does not report a suicide mortality rate.
           </p>
+          {headline?.available ? (
+            <div className="mt-6 border-t border-outline pt-4">
+              <p className="text-sm uppercase tracking-wide text-slate">One finding</p>
+              <p className="mt-2 leading-7 text-charcoal">{headline.statement}</p>
+              <Link href="/insights" className="mt-3 inline-block text-sm font-medium text-primary hover:underline">
+                What this means
+              </Link>
+            </div>
+          ) : null}
         </div>
       </section>
 

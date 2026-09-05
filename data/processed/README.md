@@ -13,6 +13,7 @@ Optional later:
 - `cchs_mh_disorders.csv` (large)
 - `perceived_health_quarterly.csv` (general health, not mental health)
 - `cihi_mh_services.csv`
+- `04_kpi_summary.csv` (curated scorecard from the analysis notebook — mortality ratio, 2015 consultation headcount, and other facts the percent-only charts cannot rebuild)
 
 Do not upload `mhacs_2022_pumf.csv` or the synthetic Kaggle file.
 

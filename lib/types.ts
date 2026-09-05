@@ -60,6 +60,9 @@ export type InsightBlock = {
   points: SeriesPoint[] | BreakdownPoint[];
   available: boolean;
   caveat: string;
+  action: string;
+  help?: string;
+  source: string;
 };
 
 export type MetaResponse = {

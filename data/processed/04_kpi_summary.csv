@@ -1,0 +1,11 @@
+kpi,value,data_source
+national_fair_poor_mh_latest_pct,15.3,Statistics Canada / CIHI Cleaned Pipeline
+highest_burden_province,Nova Scotia (19.7%),Statistics Canada / CIHI Cleaned Pipeline
+lowest_burden_province,Quebec (8.8%),Statistics Canada / CIHI Cleaned Pipeline
+provinces_worsening_count,10,Statistics Canada / CIHI Cleaned Pipeline
+national_suicidal_thoughts_latest_pct,12.1,Statistics Canada / CIHI Cleaned Pipeline
+female_minus_male_mood_disorder_pp,11.2,Statistics Canada / CIHI Cleaned Pipeline
+male_to_female_suicide_mortality_ratio,3.06,Statistics Canada / CIHI Cleaned Pipeline
+national_unassisted_crisis_headcount,39800,Statistics Canada / CIHI Cleaned Pipeline
+post_covid_adult_health_deterioration_millions,1.91,Statistics Canada / CIHI Cleaned Pipeline
+youth_ed_visit_rate_latest_per100k,128.6,Statistics Canada / CIHI Cleaned Pipeline

@@ -6,6 +6,7 @@ import type { Observation } from "./types";
 
 const processedDir = path.join(process.cwd(), "data", "processed");
 const cache = new Map<string, Observation[] | null>();
+let kpiCache: Record<string, string> | null = null;
 
 export async function listProcessedFiles() {
   try {
@@ -31,6 +32,32 @@ export async function loadDataset(id: string): Promise<Observation[]> {
   } catch {
     return [];
   }
+}
+
+export async function loadKpiSummary(): Promise<Record<string, string>> {
+  if (kpiCache) return kpiCache;
+
+  const filePath = path.join(processedDir, "04_kpi_summary.csv");
+  try {
+    const text = await fs.readFile(filePath, "utf8");
+    const summary: Record<string, string> = {};
+    for (const line of text.replace(/^\uFEFF/, "").split(/\r?\n/)) {
+      const [kpi, value] = line.split(",");
+      if (!kpi || kpi === "kpi") continue;
+      summary[kpi.trim()] = (value ?? "").trim();
+    }
+    kpiCache = summary;
+    return summary;
+  } catch {
+    return {};
+  }
+}
+
+export function kpiNumber(summary: Record<string, string>, key: string) {
+  const raw = summary[key];
+  if (!raw) return null;
+  const match = raw.replace(/,/g, "").match(/-?\d+(?:\.\d+)?/);
+  return match ? Number(match[0]) : null;
 }
 
 export async function datasetPresence() {
