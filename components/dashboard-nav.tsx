@@ -9,6 +9,7 @@ const sections = [
   { href: "/dashboard/demographics", label: "Demographics" },
   { href: "/dashboard/geographic", label: "Geographic" },
   { href: "/dashboard/risk", label: "Risk Indicators" },
+  { href: "/dashboard/live", label: "Live Feed" },
   { href: "/dashboard/about", label: "About the Data" },
 ];
 
