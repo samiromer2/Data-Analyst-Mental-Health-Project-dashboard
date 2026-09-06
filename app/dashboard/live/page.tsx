@@ -5,11 +5,11 @@ export const metadata = { title: "Live Feed" };
 export const dynamic = "force-dynamic";
 
 async function getVectors() {
-  const base = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
+  const modelApiUrl = process.env.LIVE_MODEL_API_URL ?? "http://localhost:8000";
   try {
-    const res = await fetch(`${base}/api/live-vectors`, { cache: "no-store" });
-    const data = await res.json();
-    return data.vectors ?? [];
+    const res = await fetch(`${modelApiUrl}/vectors`, { cache: "no-store" });
+    if (!res.ok) return [];
+    return await res.json();
   } catch {
     return [];
   }
