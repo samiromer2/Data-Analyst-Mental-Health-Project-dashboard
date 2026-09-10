@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CanadaFlag } from "@/components/canada-flag";
 import { FormattedText } from "@/components/formatted-text";
 import { getInsights } from "@/lib/query";
 
@@ -18,8 +19,8 @@ export default async function HomePage() {
           <p className="mb-4 inline-block border border-outline bg-surface-lowest px-3 py-1 text-sm text-slate">
             Canada · population-level analysis
           </p>
-          <p className="text-sm font-medium uppercase tracking-wide text-primary">
-            🇨🇦 Wellness Metrics
+          <p className="inline-flex items-center text-sm font-medium uppercase tracking-wide text-primary">
+            <CanadaFlag className="inline-block h-4 w-6 rounded-xs align-middle mr-1.5" /> Wellness Metrics
           </p>
           <h1 className="mt-2 text-4xl font-bold tracking-tight text-charcoal md:text-5xl">
             Mental Health Analytics
