@@ -529,9 +529,9 @@ export async function getInsights(filters: Filters): Promise<InsightBlock[]> {
       statement:
         distressFirst && distressLast
           ? useLongTrack
-            ? `Among people 15 and over${localized ? ` in ${place}` : " in Canada"}${sexNote}, fair or poor perceived mental health rose from ${fmtPct(distressFirst.value)}% in ${distressFirst.period} to ${fmtPct(distressLast.value)}% in ${distressLast.period}.${
+            ? `Among people 15 and over${localized ? ` in ${place}` : " in Canada"}${sexNote}, fair or poor perceived mental health rose from ** ${fmtPct(distressFirst.value)}% in ${distressFirst.period} to ${fmtPct(distressLast.value)}% in ${distressLast.period}.${
                 goodFirst && goodLast
-                  ? ` Very good or excellent ratings fell from ${fmtPct(goodFirst.value)}% to ${fmtPct(goodLast.value)}% over the same CCHS mental-health cycles.`
+                  ? `** Very good or excellent ratings fell from ${fmtPct(goodFirst.value)}% to ${fmtPct(goodLast.value)}% over the same CCHS mental-health cycles.`
                   : ""
               }`
             : `In ${place}${sexNote}, fair or poor perceived mental health rose from ${fmtPct(distressFirst.value)}% in ${distressFirst.period} to ${fmtPct(distressLast.value)}% in ${distressLast.period}.`
