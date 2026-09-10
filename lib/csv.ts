@@ -58,6 +58,20 @@ function normHeader(header: string) {
     .replace(/[\s\/-]+/g, "_");
 }
 
+/** Parse a CSV string into row objects keyed by the raw (trimmed) header names. */
+export function parseCsvObjects(text: string): Record<string, string>[] {
+  const table = parseCsv(text.replace(/^\uFEFF/, ""));
+  if (table.length < 2) return [];
+  const headers = table[0].map((h) => h.replace(/^\uFEFF/, "").trim());
+  return table.slice(1).map((cells) => {
+    const row: Record<string, string> = {};
+    headers.forEach((header, index) => {
+      row[header] = (cells[index] ?? "").trim();
+    });
+    return row;
+  });
+}
+
 function pick(row: Record<string, string>, keys: string[]) {
   for (const key of keys) {
     if (row[key] != null && row[key] !== "") return row[key];

@@ -46,7 +46,7 @@ export function FilterBar({ dataset: datasetOverride }: { dataset?: string }) {
   const params = useSearchParams();
   const dataset = datasetOverride ?? SECTION_DATASET[pathname] ?? "perceived_mh_annual";
   const showAge = SECTION_AGE[pathname] ?? false;
-  const hide = pathname.endsWith("/about");
+  const hide = pathname.endsWith("/about") || pathname.startsWith("/dashboard/report");
   const [meta, setMeta] = useState<MetaResponse | null>(null);
 
   useEffect(() => {

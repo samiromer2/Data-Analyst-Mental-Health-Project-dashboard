@@ -1,0 +1,6 @@
+income_bracket,sample_respondents,weighted_population,pct_fair_poor_mh,pct_excellent_vg_mh
+1. Lowest (< $20k),1120,2820742.54,11.96472472,53.53037467
+2. Lower-Middle ($20k-$39k),1156,3522132.44,13.56037452,51.82711954
+3. Middle ($40k-$59k),4858,16129799.19,12.96424559,53.74470356
+4. Upper-Middle ($60k-$79k),1069,3524803.27,9.084754112,56.08763918
+5. Highest ($80k+),1556,5348206.92,6.353997799,66.99538974
