@@ -1,18 +1,19 @@
 import React from "react";
 
 export function CanadaFlag({
-  className = "inline-block h-4.5 w-auto align-middle object-contain mr-1.5 shrink-0",
+  className = "h-6 w-6 mr-2",
 }: {
   className?: string;
 }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/apple-touch-icon.png"
+      src="/canada-flag.png"
       alt="Canada Flag 🇨🇦"
       title="Canada 🇨🇦"
-      className={className}
-      style={{ aspectRatio: "1 / 1" }}
+      className={`inline-block aspect-square object-contain align-middle shrink-0 ${className}`}
+      width={24}
+      height={24}
     />
   );
 }

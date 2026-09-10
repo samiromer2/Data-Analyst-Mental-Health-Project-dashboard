@@ -20,7 +20,7 @@ export default async function HomePage() {
             Canada · population-level analysis
           </p>
           <p className="inline-flex items-center text-sm font-medium uppercase tracking-wide text-primary">
-            <CanadaFlag className="inline-block h-4 w-6 rounded-xs align-middle mr-1.5" /> Wellness Metrics
+            <CanadaFlag className="h-5 w-5 mr-1.5" /> Wellness Metrics
           </p>
           <h1 className="mt-2 text-4xl font-bold tracking-tight text-charcoal md:text-5xl">
             Mental Health Analytics

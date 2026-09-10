@@ -5,7 +5,7 @@ export function SiteFooter() {
   return (
     <footer className="mt-auto flex flex-col items-center justify-between gap-4 border-t border-outline bg-surface-container px-4 py-6 md:flex-row md:px-10">
       <p className="inline-flex items-center text-xl font-semibold text-primary">
-        <CanadaFlag className="inline-block h-5 w-7 rounded-xs align-middle mr-2" /> Wellness Metrics
+        <CanadaFlag className="h-6 w-6 mr-2" /> Wellness Metrics
       </p>
       <nav className="flex flex-wrap justify-center gap-4 text-sm text-on-variant">
         <Link href="/executive-brief" className="hover:text-primary">
