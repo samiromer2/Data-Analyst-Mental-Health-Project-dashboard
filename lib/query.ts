@@ -433,16 +433,16 @@ export async function getInsights(filters: Filters): Promise<InsightBlock[]> {
   const disorderGeo = localized ? filters.geo : "Canada";
   const watchFilters: Filters = localized
     ? {
-        ...filters,
-        dataset: filters.dataset ?? "perceived_mh_annual",
-        indicator: filters.indicator ?? HEADLINE_INDICATORS.mhPoor,
-      }
+      ...filters,
+      dataset: filters.dataset ?? "perceived_mh_annual",
+      indicator: filters.indicator ?? HEADLINE_INDICATORS.mhPoor,
+    }
     : {
-        dataset: "cchs_mh_disorders",
-        geo: "Canada",
-        sex: filters.sex,
-        indicator: HEADLINE_INDICATORS.mhPoor,
-      };
+      dataset: "cchs_mh_disorders",
+      geo: "Canada",
+      sex: filters.sex,
+      indicator: HEADLINE_INDICATORS.mhPoor,
+    };
 
   const [longPoor, longGood, annualPoor, regions, ages, moodBySex, consultBySex, trendResult] =
     await Promise.all([
@@ -529,11 +529,10 @@ export async function getInsights(filters: Filters): Promise<InsightBlock[]> {
       statement:
         distressFirst && distressLast
           ? useLongTrack
-            ? `Among people 15 and over${localized ? ` in ${place}` : " in Canada"}${sexNote}, fair or poor perceived mental health **rose from ${fmtPct(distressFirst.value)}% in ${distressFirst.period} to ${fmtPct(distressLast.value)}% in ${distressLast.period}**.${
-                goodFirst && goodLast
-                  ? ` Very good or excellent ratings **fell from ${fmtPct(goodFirst.value)}% to ${fmtPct(goodLast.value)}%** over the same CCHS mental-health cycles.`
-                  : ""
-              }`
+            ? `Among people 15 and over${localized ? ` in ${place}` : " in Canada"}${sexNote}, fair or poor perceived mental health rose from ${fmtPct(distressFirst.value)}% in ${distressFirst.period} to ${fmtPct(distressLast.value)}% in ${distressLast.period}.${goodFirst && goodLast
+              ? ` Very good or excellent ratings fell from ${fmtPct(goodFirst.value)}% to ${fmtPct(goodLast.value)}% over the same CCHS mental-health cycles.`
+              : ""
+            }`
             : `In ${place}${sexNote}, fair or poor perceived mental health **rose from ${fmtPct(distressFirst.value)}% in ${distressFirst.period} to ${fmtPct(distressLast.value)}% in ${distressLast.period}**.`
           : "Cycle-to-cycle change will appear after the perceived-mental-health tables are uploaded.",
       meaning:
@@ -554,16 +553,14 @@ export async function getInsights(filters: Filters): Promise<InsightBlock[]> {
       statement:
         topRegion && lowRegion
           ? selectedRegion
-            ? `${selectedRegion.label} reported ${fmtPct(selectedRegion.value)}% fair or poor perceived mental health in the latest CCHS annual cycle${sexNote}. Across Canada the range ran from ${lowRegion.label} (${fmtPct(lowRegion.value)}%) to ${topRegion.label} (${fmtPct(topRegion.value)}%).${
-                nationalPoor != null
-                  ? ` A separate 2022 CCHS mental-health cycle put the national rate at ${fmtPct(nationalPoor)}% among people 15 and over.`
-                  : ""
-              }`
-            : `In the latest CCHS annual cycle${sexNote}, fair or poor perceived mental health ranged from ${fmtPct(lowRegion.value)}% in ${lowRegion.label} to ${fmtPct(topRegion.value)}% in ${topRegion.label}.${
-                nationalPoor != null
-                  ? ` A separate 2022 CCHS mental-health cycle put the national rate at ${fmtPct(nationalPoor)}% among people 15 and over.`
-                  : ""
-              }`
+            ? `${selectedRegion.label} reported ${fmtPct(selectedRegion.value)}% fair or poor perceived mental health in the latest CCHS annual cycle${sexNote}. Across Canada the range ran from ${lowRegion.label} (${fmtPct(lowRegion.value)}%) to ${topRegion.label} (${fmtPct(topRegion.value)}%).${nationalPoor != null
+              ? ` A separate 2022 CCHS mental-health cycle put the national rate at ${fmtPct(nationalPoor)}% among people 15 and over.`
+              : ""
+            }`
+            : `In the latest CCHS annual cycle${sexNote}, fair or poor perceived mental health ranged from ${fmtPct(lowRegion.value)}% in ${lowRegion.label} to ${fmtPct(topRegion.value)}% in ${topRegion.label}.${nationalPoor != null
+              ? ` A separate 2022 CCHS mental-health cycle put the national rate at ${fmtPct(nationalPoor)}% among people 15 and over.`
+              : ""
+            }`
           : "Provincial comparisons will appear after perceived_mh_annual.csv is uploaded.",
       meaning:
         "Provinces and territories do not report the same burden. Differences can reflect both how people are feeling and how they answer surveys. This is an ecological pattern — it does not rank individual risk.",
@@ -601,11 +598,10 @@ export async function getInsights(filters: Filters): Promise<InsightBlock[]> {
       available: Boolean(femaleMood && maleMood) || mortalityRatio != null,
       statement:
         femaleMood && maleMood
-          ? `Women reported a higher rate of mood disorders than men (${fmtPct(femaleMood.value)}% vs ${fmtPct(maleMood.value)}%, a ${fmtPct(Math.abs(moodGap ?? femaleMood.value - maleMood.value))} percentage-point gap) in ${localized ? place : "Canada"}.${
-              mortalityRatio != null
-                ? ` In CIHI mortality data, men died by suicide about ${fmtPct(mortalityRatio)} times as often as women.`
-                : ""
-            }`
+          ? `Women reported a higher rate of mood disorders than men (${fmtPct(femaleMood.value)}% vs ${fmtPct(maleMood.value)}%, a ${fmtPct(Math.abs(moodGap ?? femaleMood.value - maleMood.value))} percentage-point gap) in ${localized ? place : "Canada"}.${mortalityRatio != null
+            ? ` In CIHI mortality data, men died by suicide about ${fmtPct(mortalityRatio)} times as often as women.`
+            : ""
+          }`
           : mortalityRatio != null
             ? `Women were more likely to report mood disorders and suicidal thoughts in the survey tables. In CIHI mortality data, men died by suicide about ${fmtPct(mortalityRatio)} times as often as women.`
             : "Gender comparisons will appear after the disorder and KPI tables are uploaded.",
@@ -627,11 +623,10 @@ export async function getInsights(filters: Filters): Promise<InsightBlock[]> {
       available: contactGap != null,
       statement:
         contactGap != null
-          ? `In the 2015 national survey, about ${fmtCount(contactGap)} more men reported suicidal thoughts than appeared in professional consultation counts.${
-              localized
-                ? ` That headcount is Canada-level, not a ${place} total.`
-                : ""
-            } Consultation rates were also lower for men than for women.`
+          ? `In the 2015 national survey, about ${fmtCount(contactGap)} more men reported suicidal thoughts than appeared in professional consultation counts.${localized
+            ? ` That headcount is Canada-level, not a ${place} total.`
+            : ""
+          } Consultation rates were also lower for men than for women.`
           : "The 2015 consultation gap will appear after 04_kpi_summary.csv is uploaded.",
       meaning:
         "A population can report thoughts of suicide and still not show up in professional consultation statistics. The gap is a survey headcount from 2015, useful for outreach design, not a current-year caseload.",
