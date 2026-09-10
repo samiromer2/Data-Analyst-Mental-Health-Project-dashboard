@@ -16,8 +16,8 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "MindMetrics — Mental Health Analytics",
-    template: "%s · MindMetrics",
+    default: "CanWellnessMetric — Mental Health Analytics",
+    template: "%s · CanWellnessMetric",
   },
   description:
     "Population-level mental health analytics for Canada, from Statistics Canada and CIHI sources.",

@@ -1,4 +1,4 @@
-# MindMetrics
+# CanWellnessMetric
 
 Public Next.js site for the Canadian mental-health analytics project. Deploy on Vercel.
 

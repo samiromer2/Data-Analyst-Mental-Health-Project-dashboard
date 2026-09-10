@@ -18,7 +18,7 @@ export default async function HomePage() {
             Canada · population-level analysis
           </p>
           <p className="text-sm font-medium uppercase tracking-wide text-primary">
-            MindMetrics
+            CanWellnessMetric
           </p>
           <h1 className="mt-2 text-4xl font-bold tracking-tight text-charcoal md:text-5xl">
             Mental Health Analytics
