@@ -395,10 +395,6 @@ function fmtPct(value: number) {
   return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(1);
 }
 
-function fmtCount(value: number) {
-  return Math.round(value).toLocaleString("en-CA");
-}
-
 function isProvinceFilter(geo?: string) {
   return Boolean(geo) && !isNational(geo ?? "");
 }
@@ -444,7 +440,7 @@ export async function getInsights(filters: Filters): Promise<InsightBlock[]> {
       indicator: HEADLINE_INDICATORS.mhPoor,
     };
 
-  const [longPoor, longGood, annualPoor, regions, ages, moodBySex, consultBySex, trendResult] =
+  const [longPoor, longGood, annualPoor, regions, ages, moodBySex, , trendResult] =
     await Promise.all([
       getSeries({
         ...scoped,
@@ -519,7 +515,6 @@ export async function getInsights(filters: Filters): Promise<InsightBlock[]> {
   const moodGap =
     femaleMood && maleMood ? femaleMood.value - maleMood.value : kpiNumber(kpis, "female_minus_male_mood_disorder_pp");
   const mortalityRatio = kpiNumber(kpis, "male_to_female_suicide_mortality_ratio");
-  const contactGap = kpiNumber(kpis, "national_unassisted_crisis_headcount");
 
   const blocks: InsightBlock[] = [
     {
