@@ -14,6 +14,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { FormattedText } from "@/components/formatted-text";
 import { PRESENTATION_SLIDES } from "./slides-data";
 
 const axisStyle = { fontSize: 12, fill: "#64748b" };
@@ -253,7 +254,7 @@ export function PresentationDeck() {
                         {slide.bulletPoints?.map((bp, i) => (
                           <div key={i} className="flex items-start gap-2 text-sm text-on-variant">
                             <span className="text-primary font-bold">✓</span>
-                            <span>{bp}</span>
+                            <span><FormattedText text={bp} /></span>
                           </div>
                         ))}
                       </div>
@@ -322,7 +323,7 @@ export function PresentationDeck() {
                         {slide.bulletPoints?.map((point, i) => (
                           <li key={i} className="flex items-start gap-2 text-sm text-on-variant">
                             <span className="font-bold text-primary">▸</span>
-                            <span>{point}</span>
+                            <span><FormattedText text={point} /></span>
                           </li>
                         ))}
                       </ul>
@@ -397,7 +398,7 @@ export function PresentationDeck() {
                         <ul className="mt-3 space-y-3">
                           {slide.bulletPoints?.map((bp, i) => (
                             <li key={i} className="text-xs leading-relaxed text-on-variant">
-                              • {bp}
+                              • <FormattedText text={bp} />
                             </li>
                           ))}
                         </ul>
@@ -655,7 +656,7 @@ export function PresentationDeck() {
             <div className="mt-8 flex flex-col gap-2 rounded-xs border-l-4 border-primary bg-surface-dim p-4 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-xs font-medium text-charcoal md:text-sm">
                 <span className="font-bold text-primary">Executive Takeaway: </span>
-                {slide.takeaway}
+                <FormattedText text={slide.takeaway} />
               </p>
             </div>
           </main>

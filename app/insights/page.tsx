@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { FormattedText } from "@/components/formatted-text";
 import { BreakdownChart, TrendChart } from "@/components/charts/analytics-charts";
 import { DataNotice } from "@/components/data-notice";
 import { FilterBar } from "@/components/filter-bar";
@@ -48,7 +49,9 @@ export default async function InsightsPage({
       {insights.map((item) => (
         <article key={item.id} className="border border-outline bg-surface-lowest p-6">
           <h2 className="text-xl font-semibold text-charcoal">{item.title}</h2>
-          <p className="mt-3 text-lg leading-7 text-charcoal">{item.statement}</p>
+          <p className="mt-3 text-lg leading-7 text-charcoal">
+            <FormattedText text={item.statement} />
+          </p>
           {item.points.length > 0 ? (
             <div className="mt-6">
               {isSeries(item.points) ? (

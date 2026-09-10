@@ -529,12 +529,12 @@ export async function getInsights(filters: Filters): Promise<InsightBlock[]> {
       statement:
         distressFirst && distressLast
           ? useLongTrack
-            ? `Among people 15 and over${localized ? ` in ${place}` : " in Canada"}${sexNote}, fair or poor perceived mental health rose from ${fmtPct(distressFirst.value)}% in ${distressFirst.period} to ${fmtPct(distressLast.value)}% in ${distressLast.period}.${
+            ? `Among people 15 and over${localized ? ` in ${place}` : " in Canada"}${sexNote}, fair or poor perceived mental health **rose from ${fmtPct(distressFirst.value)}% in ${distressFirst.period} to ${fmtPct(distressLast.value)}% in ${distressLast.period}**.${
                 goodFirst && goodLast
-                  ? ` Very good or excellent ratings fell from ${fmtPct(goodFirst.value)}% to ${fmtPct(goodLast.value)}% over the same CCHS mental-health cycles.`
+                  ? ` Very good or excellent ratings **fell from ${fmtPct(goodFirst.value)}% to ${fmtPct(goodLast.value)}%** over the same CCHS mental-health cycles.`
                   : ""
               }`
-            : `In ${place}${sexNote}, fair or poor perceived mental health rose from ${fmtPct(distressFirst.value)}% in ${distressFirst.period} to ${fmtPct(distressLast.value)}% in ${distressLast.period}.`
+            : `In ${place}${sexNote}, fair or poor perceived mental health **rose from ${fmtPct(distressFirst.value)}% in ${distressFirst.period} to ${fmtPct(distressLast.value)}% in ${distressLast.period}**.`
           : "Cycle-to-cycle change will appear after the perceived-mental-health tables are uploaded.",
       meaning:
         "More people in later survey cycles described their mental health as fair or poor. That is a planning signal for capacity and access — not a diagnosis of any person, and not a continuous year-by-year national trend line.",

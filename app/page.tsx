@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FormattedText } from "@/components/formatted-text";
 import { getInsights } from "@/lib/query";
 
 const metrics = [
@@ -18,7 +19,7 @@ export default async function HomePage() {
             Canada · population-level analysis
           </p>
           <p className="text-sm font-medium uppercase tracking-wide text-primary">
-            CanWellnessMetric
+            🇨🇦 Wellness Metrics
           </p>
           <h1 className="mt-2 text-4xl font-bold tracking-tight text-charcoal md:text-5xl">
             Mental Health Analytics
@@ -62,7 +63,9 @@ export default async function HomePage() {
           {headline?.available ? (
             <div className="mt-6 border-t border-outline pt-4">
               <p className="text-sm uppercase tracking-wide text-slate">One finding</p>
-              <p className="mt-2 leading-7 text-charcoal">{headline.statement}</p>
+              <p className="mt-2 leading-7 text-charcoal">
+                <FormattedText text={headline.statement} />
+              </p>
               <Link href="/insights" className="mt-3 inline-block text-sm font-medium text-primary hover:underline">
                 What this means
               </Link>
@@ -81,7 +84,7 @@ export default async function HomePage() {
         ))}
       </section>
 
-      <section className="grid gap-6 border-b border-outline px-4 py-12 md:grid-cols-2 md:px-10">
+      <section className="grid gap-6 px-4 py-12 md:grid-cols-2 md:px-10">
         <article className="relative overflow-hidden border border-outline bg-surface-lowest p-8">
           <div className="absolute top-0 left-0 h-full w-1 bg-error" />
           <h2 className="text-xl font-semibold text-charcoal">The Problem</h2>
@@ -101,32 +104,6 @@ export default async function HomePage() {
             prevention-resource planning, not individual prediction.
           </p>
         </article>
-      </section>
-
-      <section className="px-4 py-12 md:px-10">
-        <h2 className="text-2xl font-bold text-charcoal">Project Impact</h2>
-        <p className="mt-2 max-w-2xl text-on-variant">
-          A public analytics site that keeps the story, the evidence, and the
-          method in separate places.
-        </p>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <Link href="/dashboard" className="border border-outline bg-surface-lowest p-6 hover:border-primary">
-            <p className="text-sm text-primary">Dashboard</p>
-            <p className="mt-2 font-semibold text-charcoal">What is happening</p>
-          </Link>
-          <Link href="/executive-brief" className="border border-outline bg-surface-lowest p-6 hover:border-primary">
-            <p className="text-sm text-primary">Executive Brief</p>
-            <p className="mt-2 font-semibold text-charcoal">Presentation slide deck</p>
-          </Link>
-          <Link href="/explorer" className="border border-outline bg-surface-lowest p-6 hover:border-primary">
-            <p className="text-sm text-primary">Data Explorer</p>
-            <p className="mt-2 font-semibold text-charcoal">Investigate the tables</p>
-          </Link>
-          <Link href="/workflow" className="border border-outline bg-surface-lowest p-6 hover:border-primary">
-            <p className="text-sm text-primary">Data Workflow</p>
-            <p className="mt-2 font-semibold text-charcoal">How the analysis was done</p>
-          </Link>
-        </div>
       </section>
     </div>
   );

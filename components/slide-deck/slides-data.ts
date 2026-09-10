@@ -34,7 +34,7 @@ export const PRESENTATION_SLIDES: SlideData[] = [
     id: 1,
     category: "Executive Briefing",
     badge: "National Overview · 2002–2024",
-    title: "CanWellnessMetric: National Mental Health Briefing",
+    title: "🇨🇦 Wellness Metrics: National Mental Health Briefing",
     subtitle: "A two-decade population-level analysis of mental health trajectories, provincial disparities, and forward-looking resource allocation signals across Canada.",
     takeaway: "Aggregated evidence from Statistics Canada and CIHI highlights systemic shifts requiring targeted prevention investments rather than uniform federal delivery.",
     speakerNotes: "Welcome stakeholders and executives. This briefing synthesizes 20+ years of Canadian Community Health Survey (CCHS) data and CIHI hospital indicators. Key focus: identifying where population distress has outpaced coping capacity and providing forward-looking signals for public health intervention.",
@@ -88,7 +88,7 @@ export const PRESENTATION_SLIDES: SlideData[] = [
       },
     ],
     bulletPoints: [
-      "Distress Doubling: 15.3% of Canadians aged 15+ reported fair/poor mental health in 2022, versus 6.9% in 2002.",
+      "Distress Doubling: Fair or poor perceived mental health **rose from 6.9% in 2002 to 15.3% in 2022**.",
       "Erosion of Protective Factors: Canadians reporting 'excellent' day-to-day coping has steadily fallen.",
       "Youth Concentration: Young adults are reporting distress and suicidal ideation at rates unprecedented in previous cycles.",
     ],
@@ -110,8 +110,8 @@ export const PRESENTATION_SLIDES: SlideData[] = [
       { name: "2023/24 Est.", value1: 50.3, value2: 16.4, label: "2024" },
     ],
     bulletPoints: [
-      "Green Series: Very Good or Excellent Mental Health (fell from 67.1% to ~50.3%).",
-      "Red Series: Fair or Poor Mental Health (rose from 6.9% to ~16.4%).",
+      "Green Series: Very Good or Excellent Mental Health (**fell from 67.1% to 53.1%**).",
+      "Red Series: Fair or Poor Mental Health (**rose from 6.9% in 2002 to 15.3% in 2022**).",
       "Noticeable acceleration occurred between 2019 and 2022, compounding existing pressures.",
     ],
   },
@@ -219,7 +219,7 @@ export const PRESENTATION_SLIDES: SlideData[] = [
     badge: "Data Integrity & Access",
     title: "Data Integrity, Governance & Interactive Exploration",
     subtitle: "All findings in this briefing are grounded in open Canadian public health records, adhering to strict confidentiality and statistical reliability standards.",
-    takeaway: "Stakeholders can dive deeper into the raw tables, custom filters, and trend charts using the interactive tools on CanWellnessMetric.",
+    takeaway: "Stakeholders can dive deeper into the raw tables, custom filters, and trend charts using the interactive tools on 🇨🇦 Wellness Metrics.",
     speakerNotes: "Conclude the presentation by encouraging stakeholders to explore the full interactive dashboard. Remind them of confidentiality and suppression rules: low-count cells are suppressed by StatCan to protect privacy.",
     type: "governance",
     bulletPoints: [

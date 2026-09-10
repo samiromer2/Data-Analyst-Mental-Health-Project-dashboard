@@ -1,4 +1,4 @@
-# CanWellnessMetric
+# 🇨🇦 Wellness Metrics
 the full readme its not here for now
 Public Next.js site for the Canadian mental-health analytics project. Deploy on Vercel.
 

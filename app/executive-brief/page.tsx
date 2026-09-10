@@ -62,8 +62,8 @@ export default function ExecutiveBriefPage() {
           </h2>
           <p className="mt-2 text-sm leading-relaxed text-on-variant">
             Between 2002 and 2022, Canadians aged 15+ reporting fair or poor mental
-            health rose from 6.9% to 15.3%. Over the same cycles, those reporting
-            excellent or very good ratings dropped from 67.1% to 53.1%.
+            health <strong className="font-bold text-charcoal">rose from 6.9% in 2002 to 15.3% in 2022</strong>. Over the same cycles, those reporting
+            excellent or very good ratings <strong className="font-bold text-charcoal">fell from 67.1% to 53.1%</strong>.
           </p>
         </article>
 

@@ -3,7 +3,7 @@ import Link from "next/link";
 export function SiteFooter() {
   return (
     <footer className="mt-auto flex flex-col items-center justify-between gap-4 border-t border-outline bg-surface-container px-4 py-6 md:flex-row md:px-10">
-      <p className="text-xl font-semibold text-primary">CanWellnessMetric</p>
+      <p className="text-xl font-semibold text-primary">🇨🇦 Wellness Metrics</p>
       <nav className="flex flex-wrap justify-center gap-4 text-sm text-on-variant">
         <Link href="/executive-brief" className="hover:text-primary">
           Executive Brief
