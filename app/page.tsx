@@ -36,8 +36,14 @@ export default async function HomePage() {
               Explore Dashboard
             </Link>
             <Link
-              href="/insights"
+              href="/executive-brief"
               className="border border-primary px-6 py-3 text-center text-sm font-medium text-primary hover:bg-surface-dim"
+            >
+              Executive Brief (Deck)
+            </Link>
+            <Link
+              href="/insights"
+              className="border border-outline px-6 py-3 text-center text-sm font-medium text-charcoal hover:bg-surface-dim"
             >
               View Insights
             </Link>
@@ -103,10 +109,14 @@ export default async function HomePage() {
           A public analytics site that keeps the story, the evidence, and the
           method in separate places.
         </p>
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Link href="/dashboard" className="border border-outline bg-surface-lowest p-6 hover:border-primary">
             <p className="text-sm text-primary">Dashboard</p>
             <p className="mt-2 font-semibold text-charcoal">What is happening</p>
+          </Link>
+          <Link href="/executive-brief" className="border border-outline bg-surface-lowest p-6 hover:border-primary">
+            <p className="text-sm text-primary">Executive Brief</p>
+            <p className="mt-2 font-semibold text-charcoal">Presentation slide deck</p>
           </Link>
           <Link href="/explorer" className="border border-outline bg-surface-lowest p-6 hover:border-primary">
             <p className="text-sm text-primary">Data Explorer</p>
