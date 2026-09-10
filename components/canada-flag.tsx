@@ -1,12 +1,10 @@
 import React from "react";
 
 export function CanadaFlag({
-  className = "inline-block h-6 w-6 align-middle object-contain mr-2 shrink-0",
+  className = "inline-block h-4.5 w-auto align-middle object-contain mr-1.5 shrink-0",
 }: {
   className?: string;
-}
-
-export function CanadaFlag({ className = "h-4.5 w-auto", ...props }: CanadaFlagProps) {
+}) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
@@ -14,6 +12,7 @@ export function CanadaFlag({ className = "h-4.5 w-auto", ...props }: CanadaFlagP
       alt="Canada Flag 🇨🇦"
       title="Canada 🇨🇦"
       className={className}
+      style={{ aspectRatio: "1 / 1" }}
     />
   );
 }

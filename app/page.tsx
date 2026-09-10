@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CanadaFlag } from "@/components/canada-flag";
 import { FormattedText } from "@/components/formatted-text";
 import { getInsights } from "@/lib/query";
 
