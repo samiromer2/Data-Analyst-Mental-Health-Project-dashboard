@@ -9,16 +9,13 @@ export function SiteFooter() {
       </p>
       <nav className="flex flex-wrap justify-center gap-4 text-sm text-on-variant">
         <Link href="/executive-brief" className="hover:text-primary">
-          Executive Brief
+          Executive Brief & Insights
         </Link>
         <Link href="/workflow" className="hover:text-primary">
           Data Workflow
         </Link>
         <Link href="/dashboard/about" className="hover:text-primary">
           About the Data
-        </Link>
-        <Link href="/insights" className="hover:text-primary">
-          Insights
         </Link>
       </nav>
       <p className="text-sm text-on-variant">

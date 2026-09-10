@@ -5,8 +5,21 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/**": ["./data/processed/**"],
     "/dashboard/**": ["./data/processed/**"],
-    "/explorer/**": ["./data/processed/**"],
-    "/insights/**": ["./data/processed/**"],
+    "/executive-brief/**": ["./data/processed/**"],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/insights",
+        destination: "/executive-brief#actionable-insights",
+        permanent: true,
+      },
+      {
+        source: "/explorer",
+        destination: "/dashboard",
+        permanent: true,
+      },
+    ];
   },
 };
 

@@ -7,11 +7,9 @@ import { CanadaFlag } from "@/components/canada-flag";
 
 const links = [
   { href: "/", label: "Home" },
+  { href: "/workflow", label: "Workflow" },
+  { href: "/executive-brief", label: "Insight" },
   { href: "/dashboard", label: "Dashboard" },
-  { href: "/executive-brief", label: "Executive Brief" },
-  { href: "/explorer", label: "Data Explorer" },
-  { href: "/insights", label: "Insights" },
-  { href: "/workflow", label: "Data Workflow" },
 ];
 
 function isActive(pathname: string, href: string) {

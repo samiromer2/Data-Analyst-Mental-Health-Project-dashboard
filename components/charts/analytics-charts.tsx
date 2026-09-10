@@ -46,12 +46,16 @@ export function BreakdownChart({
   points,
   title,
   layout = "vertical",
+  unit,
 }: {
   points: BreakdownPoint[];
   title: string;
   layout?: "vertical" | "horizontal";
+  unit?: string;
 }) {
   const horizontal = layout === "horizontal";
+  const detectedUnit =
+    unit ?? (points.some((p) => p.label.includes("(M)") || p.label.includes("Million")) ? "M" : "%");
   return (
     <div className={horizontal ? "h-96 w-full" : "h-72 w-full"}>
       <p className="mb-4 text-sm font-medium text-slate">{title}</p>
@@ -64,17 +68,17 @@ export function BreakdownChart({
           <CartesianGrid stroke={grid} vertical={!horizontal} horizontal={horizontal} />
           {horizontal ? (
             <>
-              <XAxis type="number" tick={axis} unit="%" axisLine={{ stroke: grid }} />
-              <YAxis type="category" dataKey="label" tick={axis} width={120} axisLine={{ stroke: grid }} />
+              <XAxis type="number" tick={axis} unit={detectedUnit} axisLine={{ stroke: grid }} />
+              <YAxis type="category" dataKey="label" tick={axis} width={150} axisLine={{ stroke: grid }} />
             </>
           ) : (
             <>
               <XAxis dataKey="label" tick={axis} axisLine={{ stroke: grid }} />
-              <YAxis tick={axis} unit="%" axisLine={{ stroke: grid }} />
+              <YAxis tick={axis} unit={detectedUnit} axisLine={{ stroke: grid }} />
             </>
           )}
           <Tooltip
-            formatter={(value) => [`${value}%`, "Value"]}
+            formatter={(value) => [`${value}${detectedUnit}`, "Value"]}
             contentStyle={{ border: "1px solid #E2E8F0", borderRadius: 4 }}
           />
           <Bar dataKey="value" fill="#00685f" radius={[2, 2, 0, 0]} />

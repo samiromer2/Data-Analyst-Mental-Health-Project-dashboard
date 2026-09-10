@@ -71,8 +71,8 @@ export default async function OverviewPage({
             ))}
           </ul>
           <p className="mt-4 text-sm">
-            <Link href="/insights" className="font-medium text-primary hover:underline">
-              Read what this means
+            <Link href="/executive-brief#actionable-insights" className="font-medium text-primary hover:underline">
+              Read actionable insights →
             </Link>
           </p>
         </div>
