@@ -32,7 +32,10 @@ export function CanadaChoropleth({
 
   return (
     <div className="flex flex-col gap-3 lg:flex-row lg:items-start">
-      <div className="relative aspect-[4/3] w-full max-w-xl">
+      <div
+        className="relative w-full max-w-lg"
+        style={{ aspectRatio: String((canada as { aspectRatio?: number }).aspectRatio ?? 1.16) }}
+      >
         <svg
           viewBox={canada.viewBox}
           preserveAspectRatio="xMidYMid meet"
